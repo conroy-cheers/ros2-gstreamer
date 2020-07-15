@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y curl gnupg2 lsb-release
 RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
 
 RUN sh -c 'echo "deb [arch=amd64,arm64] http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
-ENV CHOOSE_ROS_DISTRO=dashing
+ENV CHOOSE_ROS_DISTRO=eloquent
 RUN apt-get update && apt-get install -y ros-$CHOOSE_ROS_DISTRO-ros-base
 
 RUN apt-get install -y python3-pip aptitude gettext
@@ -48,5 +48,5 @@ ENV GI_TYPELIB_PATH=/usr/local/lib/aarch64-linux-gnu/girepository-1.0
 RUN apt-get install -y python3-colcon-common-extensions
 RUN mkdir -p /ros2_ws/src
 WORKDIR /ros2_ws
-RUN /bin/bash -c "source /opt/ros/dashing/setup.bash && colcon build"
+RUN /bin/bash -c "source /opt/ros/$CHOOSE_ROS_DISTRO/setup.bash && colcon build"
 SHELL ["/bin/bash", "-c", "source /ros2_ws/install/setup.bash"]
