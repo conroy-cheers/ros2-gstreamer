@@ -28,7 +28,7 @@ jobs:
         id: prepare
         run: |
           DOCKER_IMAGE=conroycheers/ros2-gstreamer
-          DOCKER_PLATFORMS=linux/amd64,linux/arm/v7,linux/arm64
+          DOCKER_PLATFORMS=linux/amd64,linux/arm64
           VERSION=edge
 
           if [[ $GITHUB_REF == refs/tags/* ]]; then
